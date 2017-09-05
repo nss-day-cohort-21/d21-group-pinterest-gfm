@@ -13,12 +13,15 @@ angular.module('myApp').config(function($routeProvider) {
     .when('/home', {
       templateUrl: '/partials/home.html'
     })
+    .when('/board-list', {
+        templateUrl: '/partials/board-list.html'
+    })
     .otherwise('/home');
 });
 
-angular.module('myApp').run(function($rootScope, $window) {
+angular.module('myApp').run(function($rootScope, $window,firebaseInfo) {
+  firebase.initializeApp(firebaseInfo);
   $rootScope.currentUser = null;
-
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       $rootScope.currentUser = user.uid;
