@@ -66,9 +66,9 @@ angular.module('myApp').factory("FBFactory", function($q, $http, firebaseInfo){
     };
     const getAllBoards = (uid) =>{
         if (firebase.auth().currentUser) {
-            let newnote = JSON.stringify(note);
+            let newnote = JSON.stringify(uid);
             return $q( (resolve, reject) => {
-                $http.post(`${firebaseInfo.databaseURL}/boards.json?orderBy="uid"&equalTo="${boardId}"`)
+                $http.post(`${firebaseInfo.databaseURL}/boards.json?orderBy="uid"&equalTo="${uid}"`)
                 .then((response) => {
        
                     resolve(response);
@@ -81,7 +81,7 @@ angular.module('myApp').factory("FBFactory", function($q, $http, firebaseInfo){
     };
     const getSingleBoard = (boardId) =>{
         if (firebase.auth().currentUser) {
-            let newnote = JSON.stringify(note);
+            let newnote = JSON.stringify(boardId);
             return $q( (resolve, reject) => {
                 $http.post(`${firebaseInfo.databaseURL}/boards/${boardId}.json`)
                 .then((response) => {
@@ -96,7 +96,7 @@ angular.module('myApp').factory("FBFactory", function($q, $http, firebaseInfo){
     };
     const postBoard = (boardId) =>{
         if (firebase.auth().currentUser) {
-            let newnote = JSON.stringify(note);
+            let newnote = JSON.stringify(boardId);
             return $q( (resolve, reject) => {
                 $http.post(`${firebaseInfo.databaseURL}/boards/.json`,newnote)
                 .then((response) => {
