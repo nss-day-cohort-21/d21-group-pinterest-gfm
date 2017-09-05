@@ -6,6 +6,9 @@
         let google = new firebase.auth.GoogleAuthProvider();
         return firebase.auth().signInWithPopup(google);
       },
+      logout: function(){
+          return firebase.auth().signOut();
+      },
       getUser: function() {
           return $rootScope.currentUser;
       }

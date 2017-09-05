@@ -14,6 +14,9 @@ angular.module('myApp').config(function($routeProvider) {
     .when('/home', {
       templateUrl: '/partials/home.html'
     })
+    .when('/board-list', {
+        templateUrl: '/partials/board-list.html'
+    })
     .otherwise('/home');
 });
 
@@ -34,17 +37,25 @@ angular.module('myApp').run(function($rootScope, $window,firebaseInfo) {
 (function() {
   'use strict';
 
-  var AuthCtrl = function($rootScope, $scope, $window, authFactory) {
-      function logIn() {
-        authFactory.loginWithGoogle()
-            .then(result => {
-                $location.path('#!/board-list');
-                // $rootScope.currentUser = result.user.uid;
-            });
-      }
+  var AuthCtrl = function($rootScope, $scope, $location, $window, authFactory) {
+    $scope.logIn = logIn;
+    $scope.logOut = logOut;
+
+    function logIn() {
+      authFactory.loginWithGoogle().then(result => {
+        $location.url('/board-list');
+        $scope.$apply();
+        // $rootScope.currentUser = result.user.uid;
+      });
+    }
+    function logOut() {
+      authFactory.logout().then(result => {
+        $location.url('/home');
+      });
+    }
   };
 
-  AuthCtrl.$inject = ['$rootScope', '$scope', '$window', 'authFactory'];
+  AuthCtrl.$inject = ['$rootScope', '$scope', '$location', '$window', 'authFactory'];
   angular.module('myApp').controller('AuthCtrl', AuthCtrl);
 })();
 
@@ -56,6 +67,9 @@ angular.module('myApp').run(function($rootScope, $window,firebaseInfo) {
       loginWithGoogle: function() {
         let google = new firebase.auth.GoogleAuthProvider();
         return firebase.auth().signInWithPopup(google);
+      },
+      logout: function(){
+          return firebase.auth().signOut();
       },
       getUser: function() {
           return $rootScope.currentUser;
@@ -213,6 +227,4 @@ angular.module('myApp').constant("firebaseInfo", {
     storageBucket: "",
     messagingSenderId: "36699278937"
 });
-
-
 },{}]},{},[1,2,3,4,5]);
