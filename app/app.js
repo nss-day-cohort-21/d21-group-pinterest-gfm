@@ -13,6 +13,9 @@ angular.module('myApp').config(function($routeProvider) {
     .when('/home', {
       templateUrl: '/partials/home.html'
     })
+    .when('/board-list', {
+        templateUrl: '/partials/board-list.html'
+    })
     .otherwise('/home');
 });
 
