@@ -1,0 +1,4 @@
+lib/.sass-cache
+lib/node_modules
+app/private
+css/
