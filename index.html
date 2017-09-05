@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,10 @@
     </head>
 
     <body>
-
+        <div ng-include="'./partials/navbar.html'"></div>
+        <div class="container">
+            <div ng-view></div>
+        </div>
 
         <!-- Firebase dependencies -->
         <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
