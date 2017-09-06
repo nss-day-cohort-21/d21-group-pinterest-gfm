@@ -16,6 +16,27 @@
             <div ng-view></div>
         </div>
 
+        <div class="container">
+        <div ng-controller="UserSearch">
+            <div class="row">
+                <div class="col-10">
+                    <input type="text" class="form-control" ng-model="userSearch">
+                    
+                </div>
+                <div class="col-2">
+
+                    <button ng-click="search(userSearch)" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+            <hr>
+
+            <div class="card-columns">
+                <div ng-include="'userSearch.html'">
+
+                </div>
+            </div>
+        </div>
+        </div>
         <!-- Firebase dependencies -->
         <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
         <!-- Bootstrap dependencies -->
