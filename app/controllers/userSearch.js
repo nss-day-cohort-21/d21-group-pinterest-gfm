@@ -20,7 +20,7 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
                     // console.log("indexGif", index);
                     card[index] = {
                         author: erp.author,
-                        score: erp.score,
+                        score: (Number(erp.score)/1000).toFixed(1),
                         title: erp.title,
                         url: erp.preview.images[0].variants.gif.source.url,
                         category: erp.subreddit
@@ -29,7 +29,7 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
                     // console.log("indexImg", index);
                     card[index] = {
                         author: erp.author,
-                        score: erp.score,
+                        score: (Number(erp.score)/1000).toFixed(1),
                         title: erp.title,
                         url: erp.preview.images[0].source.url,
                         category: erp.subreddit
@@ -38,7 +38,7 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
                     // console.log("indexNoImg", index);
                     card[index] = {
                         author: erp.author,
-                        score: erp.score,
+                        score: (Number(erp.score)/1000).toFixed(1),
                         title: erp.title,
                         url: `${erp.url}.jpg`,
                         category: erp.subreddit
