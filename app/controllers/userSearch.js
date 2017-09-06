@@ -1,16 +1,17 @@
 'use strict';
 
 
-let UserSearch = function($scope, RedditFactory, firebaseFactory) {
-    let userId = firebase.auth().currentUser.uid;
+let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
+    let userId; 
+    if (firebase.auth().currentUser !== null) {
+        userId = firebase.auth().currentUser.uid;
+    }
     //$scope.search used when user hits search button the input value is passed into getUserSearch function from the RedditFactory which returns data.data.data.children. Then a card for each post is passed into a larger card object which will be used in a ng-repeat to create cards
     $scope.search = function(search) {
         RedditFactory.getUserSearch(search)
         .then((data) => {
-            console.log("userSearchData", data);
             let card = {};
             data.forEach((item, index) => {
-                console.log("postData", item.data);
                 // erp = eachRedditPost
                 let erp = item.data;
 
@@ -38,7 +39,6 @@ let UserSearch = function($scope, RedditFactory, firebaseFactory) {
                 }
                 
             });
-            console.log("card", card);
             $scope.redditSearch = card;
         });
     };
@@ -48,6 +48,7 @@ let UserSearch = function($scope, RedditFactory, firebaseFactory) {
         let imgURL = $(`#pin${id}`).attr('data-modalUrl');
         $('.modalImg').attr('src', imgURL);
         $('.modal-body').attr('data-post-title', post.title);
+        $('.modalTitle').text(post.title);
     };
 
     $scope.getAllBoards = function () {
@@ -79,6 +80,14 @@ let UserSearch = function($scope, RedditFactory, firebaseFactory) {
         firebaseFactory.postBoard(board).then((item) => {
             console.log("what board ", item);
         });
+    };
+
+    $scope.createBoardandPin = function(input) {
+        if (input === undefined) {
+            $window.alert('Please supply a board name');
+        } else {
+            console.log("input", input);
+        }
     };
 
     // $scope.postBoard({title: "Macaroni"});

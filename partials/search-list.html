@@ -18,7 +18,7 @@
             <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
             <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide" data-toggle="modal" data-target="#exampleModal" ng-click="getModalURL(key, post); getAllBoards(post)">Save</button>
             <div class="card-block">
-                <p class="card-text">{{key}}. {{post.title}}</p>
+                <p class="card-text">{{post.title}}</p>
             </div>
         </div>
     </div>
@@ -34,15 +34,23 @@
                 <div class="modal-body" data-post-title="">
                     <div class="row">
                         <div class="col-6">
-                            <img class="modalImg" src="" alt="">
+                            <img class="modalImg mx-auto d-block" src="" alt="">
+                            <p class="card-text modalTitle"></p>
                         </div>
-                        <div class="col-6">
-                            <h5>Choose Board</h5>
-                            <div class="myBoards list-group" ng-repeat="(key, myBoard) in board">
-                                <div class="list-group-item">
-                                    <h6>{{myBoard.title}}</h6>
-                                    <button id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" class="btn btn-danger on-hide" ng-click="postPin(key)">Pin</button>
+                        <div class="col-6 modalBoards">
+                            <div class="myBoards col-12">
+                                <h5>Choose Board</h5>
+                                <div class="list-group" ng-repeat="(key, myBoard) in board">
+                                    <div class="list-group-item">
+                                        <h6>{{myBoard.title}}</h6>
+                                        <button id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" class="btn btn-danger on-hide" ng-click="postPin(key)">Pin</button>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="createNewBoard col-12">
+                                <h5>Create New Board</h5>
+                                <input type="text" class="form-control col-9" placeholder="Give your new board a name..." ng-model="userBoardName">
+                                <button class="btn btn-danger col-2" ng-click="createBoardandPin(userBoardName)">Pin</button>
                             </div>
                         </div>
                     </div>
