@@ -20,3 +20,12 @@
 .list-group-item:hover .on-hide {
     display: block;
 }
+
+.modalBoards {
+    min-height: 400px !important;
+}
+
+.myBoards {
+    height: 250px !important;
+    overflow-y: auto;
+}
