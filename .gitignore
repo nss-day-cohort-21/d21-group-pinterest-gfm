@@ -3,3 +3,4 @@ lib/node_modules
 app/private/
 css/
 dist/
+.idea/
