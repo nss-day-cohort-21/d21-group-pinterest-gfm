@@ -24,6 +24,9 @@ angular.module('myApp').config(function($routeProvider) {
     .when('/user-search', {
         templateUrl: '/partials/search-list.html',
         controller: 'UserSearch'
+    }).when('/pin-list', {
+        templateUrl: '/partials/pin-list.html',
+        controller: 'firebaseCtrl'
     })
     .otherwise('/home');
 });
