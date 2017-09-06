@@ -21,6 +21,10 @@ angular.module('myApp').config(function($routeProvider) {
         controller: 'firebaseCtrl',
         resolve: {isAuth}
     })
+    .when('/user-search', {
+        templateUrl: '/partials/search-list.html',
+        controller: 'UserSearch'
+    })
     .otherwise('/home');
 });
 

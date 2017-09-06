@@ -27,5 +27,5 @@ angular.module('myApp').controller("firebaseCtrl", function($scope,$route,$locat
 
 
 
-  $scope.showNotes();
+  // $scope.showNotes();
 });
