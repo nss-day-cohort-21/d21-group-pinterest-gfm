@@ -10,13 +10,13 @@ angular.module('myApp').controller("firebaseCtrl", function($scope,$route,$locat
     });
   };
 
-  // $scope.deleteNote = function(id){
-  //   $(".progress").css("visibility","visible");
-  //   NotesFactory.deleteNote(id)
-  //   .then((data) => {
-  //     $route.reload();
-  //   });
-  // };
+  $scope.deletePin = function(id){
+    $(".progress").css("visibility","visible");
+    firebaseFactory.deletePin(id)
+    .then((data) => {
+      $route.reload();
+    });
+  };
 
   // $scope.showEditNote = function(key){
 

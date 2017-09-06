@@ -3,6 +3,11 @@
     right: 10px;
     top: 10px;
 }
+.delete {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
 
 .on-hide {
     display: none;
@@ -32,4 +37,9 @@
 
 h6.card-text {
     max-width: 80% !important;
+}
+
+.cardAuthor {
+    font-size: 0.25em;
+    padding-left: 1em;
 }

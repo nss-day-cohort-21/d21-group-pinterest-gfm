@@ -5,6 +5,7 @@
         <div class="card">
             <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
             <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide" data-toggle="modal" data-target="#exampleModal1" ng-click="getModalURL(key, post); getAllBoards(post)">Save</button>
+            <button id="modalPinDelete{{key}}" data-ugly-id="{{myBoard.ugly}}" class="btn btn-danger delete on-hide" ng-click="deletePin(key)">Delete</button>
             <div class="card-block">
                 <p class="card-text">{{post.title}}</p>
             </div>
@@ -30,6 +31,7 @@
                                 <div class="list-group-item">
                                     <h6>{{myBoard.title}}</h6>
                                     <button id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" class="btn btn-danger on-hide" ng-click="postPin(key)">Pin</button>
+
                                 </div>
                             </div>
                         </div>
