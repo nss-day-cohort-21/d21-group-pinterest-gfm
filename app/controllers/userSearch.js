@@ -10,28 +10,35 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
     $scope.search = function(search) {
         RedditFactory.getUserSearch(search)
         .then((data) => {
+            console.log("data.children", data);
             let card = {};
             data.forEach((item, index) => {
                 // erp = eachRedditPost
                 let erp = item.data;
 
                 if (erp.preview && erp.preview.images[0].variants.hasOwnProperty('gif')) {
-                    console.log("indexGif", index);
+                    // console.log("indexGif", index);
                     card[index] = {
+                        author: erp.author,
+                        score: (Number(erp.score)/1000).toFixed(1),
                         title: erp.title,
                         url: erp.preview.images[0].variants.gif.source.url,
                         category: erp.subreddit
                     };
                 } else if (erp.preview && erp.preview.images[0].hasOwnProperty('variants')) {
-                    console.log("indexImg", index);
+                    // console.log("indexImg", index);
                     card[index] = {
+                        author: erp.author,
+                        score: (Number(erp.score)/1000).toFixed(1),
                         title: erp.title,
                         url: erp.preview.images[0].source.url,
                         category: erp.subreddit
                     };
                 } else {
-                    console.log("indexNoImg", index);
+                    // console.log("indexNoImg", index);
                     card[index] = {
+                        author: erp.author,
+                        score: (Number(erp.score)/1000).toFixed(1),
                         title: erp.title,
                         url: `${erp.url}.jpg`,
                         category: erp.subreddit

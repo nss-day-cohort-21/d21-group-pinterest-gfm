@@ -40,7 +40,7 @@
   margin-bottom: 0;
 }
 
-.fa {
+.pencilIcon {
   color: #999;
   font-size: 1.5em;
 }
@@ -52,4 +52,13 @@
 .myBoards {
   height: 250px !important;
   overflow-y: auto;
+}
+
+h6.card-text {
+    max-width: 80% !important;
+}
+
+.cardAuthor {
+    font-size: 0.25em;
+    padding-left: 1em;
 }
