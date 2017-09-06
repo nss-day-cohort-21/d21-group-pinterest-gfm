@@ -17,6 +17,10 @@ angular.module('myApp').config(function($routeProvider) {
         templateUrl: '/partials/board-list.html',
         controller: 'firebaseCtrl'
     })
+    .when('/user-search', {
+        templateUrl: '/partials/search-list.html',
+        controller: 'UserSearch'
+    })
     .otherwise('/home');
 });
 

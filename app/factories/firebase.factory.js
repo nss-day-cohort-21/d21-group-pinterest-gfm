@@ -64,14 +64,13 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
             });
         });
     };
-    const getAllBoards = (uid) =>{
+    const getAllBoards = (uid) => {
         if (firebase.auth().currentUser) {
-            let newnote = JSON.stringify(uid);
-            return $q( (resolve, reject) => {
-                $http.post(`${firebaseInfo.databaseURL}/boards.json?orderBy="uid"&equalTo="${uid}"`)
-                .then((response) => {
-       
-                    resolve(response);
+            return $q((resolve, reject) => {
+                $http.get(`${firebaseInfo.databaseURL}/boards.json?orderBy="uid"&equalTo="${uid}"`)
+                    .then((response) => {
+
+                        resolve(response);
                     })
                     .catch((error) => {
                         reject(error);
