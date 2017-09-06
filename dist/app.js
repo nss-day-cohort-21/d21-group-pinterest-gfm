@@ -2,26 +2,29 @@
 'use strict';
 angular.module('myApp', ['ngRoute']);
 
-let isAuth = (authFactory, $location) => {
-  return new Promise((resolve, reject) => {
-    let user = authFactory.getUser();
-    return user ? resolve() : $location.url('/home');
-  });
-};
 
 angular.module('myApp').config(function($routeProvider) {
+
+  let isAuth = (authFactory, $location) => {
+    return new Promise((resolve, reject) => {
+      let user = authFactory.getUser();
+      return user ? resolve() : $location.url('/home');
+    });
+  };
+
   $routeProvider
     .when('/home', {
       templateUrl: '/partials/home.html'
     })
     .when('/board-list', {
         templateUrl: '/partials/board-list.html',
-        controller: 'firebaseCtrl'
+        controller: 'firebaseCtrl',
+        resolve: {isAuth}
     })
     .otherwise('/home');
 });
 
-angular.module('myApp').run(function($rootScope, $window,firebaseInfo) {
+angular.module('myApp').run(function($rootScope, $window, firebaseInfo) {
   firebase.initializeApp(firebaseInfo);
   $rootScope.currentUser = null;
   firebase.auth().onAuthStateChanged(function(user) {
@@ -41,6 +44,7 @@ angular.module('myApp').run(function($rootScope, $window,firebaseInfo) {
   var AuthCtrl = function($rootScope, $scope, $location, $window, authFactory) {
     $scope.logIn = logIn;
     $scope.logOut = logOut;
+    $scope.getUser = getUser;
 
     function logIn() {
       authFactory.loginWithGoogle().then(result => {
@@ -53,6 +57,9 @@ angular.module('myApp').run(function($rootScope, $window,firebaseInfo) {
       authFactory.logout().then(result => {
         $location.url('/home');
       });
+    }
+    function getUser(){
+      return authFactory.getUser();
     }
   };
 
@@ -93,28 +100,101 @@ angular.module('myApp').controller("firebaseCtrl", function($scope,$route,$locat
   $scope.showNotes();
 });
 },{}],4:[function(require,module,exports){
+'use strict';
+
+
+let UserSearch = function($scope, RedditFactory) {
+
+    //$scope.search used when user hits search button the input value is passed into getUserSearch function from the RedditFactory which returns data.data.data.children. Then a card for each post is passed into a larger card object which will be used in a ng-repeat to create cards
+    $scope.search = function(search) {
+        RedditFactory.getUserSearch(search)
+        .then((data) => {
+            console.log("userSearchData", data);
+            let card = {};
+            data.forEach((item, index) => {
+                console.log("postData", item.data);
+                // erp = eachRedditPost
+                let erp = item.data;
+
+                if (erp.preview && erp.preview.images[0].variants.hasOwnProperty('gif')) {
+                    console.log("indexGif", index);
+                    card[index] = {
+                        title: erp.title,
+                        url: erp.preview.images[0].variants.gif.source.url,
+                        category: erp.subreddit
+                    };
+                } else if (erp.preview && erp.preview.images[0].hasOwnProperty('variants')) {
+                    console.log("indexImg", index);
+                    card[index] = {
+                        title: erp.title,
+                        url: erp.preview.images[0].source.url,
+                        category: erp.subreddit
+                    };
+                } else {
+                    console.log("indexNoImg", index);
+                    card[index] = {
+                        title: erp.title,
+                        url: `${erp.url}.jpg`,
+                        category: erp.subreddit
+                    };
+                }
+                
+            });
+            console.log("card", card);
+            $scope.redditSearch = card;
+        });
+    };
+};
+
+angular.module('myApp').controller('UserSearch', UserSearch);
+},{}],5:[function(require,module,exports){
+'use strict';
+
+let RedditFactory = function($http) {
+    let getUserSearch = function(userSearch) {
+        // http://www.reddit.com/search.json?q=${userSearch}&sort=top
+        // http://www.reddit.com/r/pics/search.json?q=${userSearch}&restrict_sr=on&sort=top
+        return $http.get(`https://www.reddit.com/r/pics/search.json?q=${userSearch}&restrict_sr=on&sort=new&t=all`)
+        .then((data) => {
+            return data.data.data.children;
+        })
+        .catch((error) => {
+            console.log("error", error);
+        });
+    };
+
+    return { getUserSearch };
+
+};
+
+
+
+
+angular.module('myApp').factory('RedditFactory', RedditFactory);
+
+},{}],6:[function(require,module,exports){
 (function() {
   'use strict';
-  var authFactory = function($http) {
+  var authFactory = function($http, $rootScope) {
     return {
       loginWithGoogle: function() {
         let google = new firebase.auth.GoogleAuthProvider();
         return firebase.auth().signInWithPopup(google);
       },
-      logout: function(){
-          return firebase.auth().signOut();
+      logout: function() {
+        return firebase.auth().signOut();
       },
       getUser: function() {
-          return $rootScope.currentUser;
+        return $rootScope.currentUser;
       }
     };
   };
 
-  authFactory.$inject = ['$http'];
+  authFactory.$inject = ['$http', '$rootScope'];
   angular.module('myApp').factory('authFactory', authFactory);
 })();
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseInfo){
     const getAllPins = function(userId){
@@ -251,7 +331,7 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
     };
     return {getAllPins,getSinglePin,postPin,patchPin,deletePin,getAllBoards,getSingleBoard,postBoard,patchBoard,deleteBoard};
 });
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 angular.module('myApp').constant("firebaseInfo", {
     apiKey: "AIzaSyAUNFWpxXsVOGym0uhAO9TuRbXMytbMfz4",
     authDomain: "gfm-pinterest-ad24f.firebaseapp.com",
@@ -260,6 +340,4 @@ angular.module('myApp').constant("firebaseInfo", {
     storageBucket: "",
     messagingSenderId: "36699278937"
 });
-
-
-},{}]},{},[1,2,3,4,5,6]);
+},{}]},{},[1,2,3,4,5,6,7,8]);
