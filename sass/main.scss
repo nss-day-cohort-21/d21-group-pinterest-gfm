@@ -1,36 +1,55 @@
 .btn-danger {
-    position: absolute;
-    right: 10px;
-    top: 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 .delete {
-    position: absolute;
-    left: 10px;
-    top: 10px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 
 .on-hide {
-    display: none;
+  display: none;
 }
 
 .card:hover .on-hide {
-    display: block;
+  display: block;
 }
 
 .modalImg {
-    max-width: 390px !important;
-    max-height: 500px !important;
+  max-width: 390px !important;
+  max-height: 500px !important;
 }
 
 .list-group-item:hover .on-hide {
-    display: block;
+  display: block;
+}
+
+/* Board list cards
+=================================*/
+.card-columns {
+  column-gap: 0.1em;
+  padding: 0.1em;
+  max-height: 20em;
+  overflow: hidden;
+}
+.card-columns .card {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.fa {
+  color: #999;
+  font-size: 1.5em;
 }
 
 .modalBoards {
-    min-height: 400px !important;
+  min-height: 400px !important;
 }
 
 .myBoards {
-    height: 250px !important;
-    overflow-y: auto;
+  height: 250px !important;
+  overflow-y: auto;
 }
