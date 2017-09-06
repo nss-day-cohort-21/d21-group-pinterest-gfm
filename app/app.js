@@ -6,7 +6,8 @@ angular.module('myApp').config(function($routeProvider) {
 
   let isAuth = (authFactory, $location) => {
     return new Promise((resolve, reject) => {
-      let user = authFactory.getUser();
+      let user = firebase.auth().currentUser;
+      // let user = authFactory.getUser();
       return user ? resolve() : $location.url('/home');
     });
   };
@@ -25,12 +26,13 @@ angular.module('myApp').config(function($routeProvider) {
 
 angular.module('myApp').run(function($rootScope, $window, firebaseInfo) {
   firebase.initializeApp(firebaseInfo);
-  $rootScope.currentUser = null;
+  $rootScope.isLoggedIn = false;
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      $rootScope.currentUser = user.uid;
+      $rootScope.isLoggedIn = true;
+
     } else {
-      $rootScope.currentUser = null;
+      $rootScope.isLoggedIn = false;
       $window.location.href = '#!/home';
     }
   });
