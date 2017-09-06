@@ -1,21 +1,24 @@
 'use strict';
 angular.module('myApp', ['ngRoute']);
 
-let isAuth = (authFactory, $location) => {
-  return new Promise((resolve, reject) => {
-    let user = authFactory.getUser();
-    return user ? resolve() : $location.url('/home');
-  });
-};
 
 angular.module('myApp').config(function($routeProvider) {
+
+  let isAuth = (authFactory, $location) => {
+    return new Promise((resolve, reject) => {
+      let user = authFactory.getUser();
+      return user ? resolve() : $location.url('/home');
+    });
+  };
+
   $routeProvider
     .when('/home', {
       templateUrl: '/partials/home.html'
     })
     .when('/board-list', {
         templateUrl: '/partials/board-list.html',
-        controller: 'firebaseCtrl'
+        controller: 'firebaseCtrl',
+        resolve: {isAuth}
     })
     .when('/user-search', {
         templateUrl: '/partials/search-list.html',
@@ -24,7 +27,7 @@ angular.module('myApp').config(function($routeProvider) {
     .otherwise('/home');
 });
 
-angular.module('myApp').run(function($rootScope, $window,firebaseInfo) {
+angular.module('myApp').run(function($rootScope, $window, firebaseInfo) {
   firebase.initializeApp(firebaseInfo);
   $rootScope.currentUser = null;
   firebase.auth().onAuthStateChanged(function(user) {
