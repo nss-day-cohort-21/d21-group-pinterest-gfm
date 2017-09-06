@@ -18,7 +18,9 @@
             <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
             <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide" data-toggle="modal" data-target="#exampleModal" ng-click="getModalURL(key, post); getAllBoards(post)">Save</button>
             <div class="card-block">
-                <p class="card-text">{{post.title}}</p>
+                <p>Score: {{post.score}}</p>
+                <h6 class="card-text">{{post.title}}</h6>
+                <p>Author: {{post.author}}</p>
             </div>
         </div>
     </div>
