@@ -75,19 +75,25 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
         });
     };
 
-    $scope.postBoard = function (board) {
+    $scope.postBoard = function (input) {
+        let board = {};
+        board.title = input;
         board.uid = userId;
-        firebaseFactory.postBoard(board).then((item) => {
+        console.log("input", input);
+        firebaseFactory.postBoard(board)
+        .then((item) => {
             console.log("what board ", item);
+            let post = {};
+            post.boardid = item.data.name;
+            post.uid = userId;
+            post.title = $('.modal-body').attr('data-post-title');
+            post.url = $('.modalImg').attr('src');
+            console.log("post", post);
+            firebaseFactory.postPin(post)
+            .then((item) => {
+                console.log("what board is this dammit", item);
+            });
         });
-    };
-
-    $scope.createBoardandPin = function(input) {
-        if (input === undefined) {
-            $window.alert('Please supply a board name');
-        } else {
-            console.log("input", input);
-        }
     };
 
     // $scope.postBoard({title: "Macaroni"});
