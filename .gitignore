@@ -1,5 +1,6 @@
 lib/.sass-cache
 lib/node_modules
-app/private
+app/private/
 css/
 dist/
+.idea/

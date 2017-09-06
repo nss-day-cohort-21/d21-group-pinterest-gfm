@@ -32,7 +32,7 @@ let UserSearch = function($scope, RedditFactory) {
                     console.log("indexNoImg", index);
                     card[index] = {
                         title: erp.title,
-                        url: erp.url,
+                        url: `${erp.url}.jpg`,
                         category: erp.subreddit
                     };
                 }
