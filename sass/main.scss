@@ -28,13 +28,13 @@
 
 /* Board list cards
 =================================*/
-.card-columns {
+.board-column {
   column-gap: 0.1em;
   padding: 0.1em;
   max-height: 20em;
   overflow: hidden;
 }
-.card-columns .card {
+.board-column .card {
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 0;
