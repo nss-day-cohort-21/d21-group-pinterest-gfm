@@ -2,5 +2,5 @@ lib/.sass-cache
 lib/node_modules
 app/private/
 css/
-dist/
+dist/app.js
 .idea/
