@@ -14,7 +14,8 @@ angular.module('myApp').config(function($routeProvider) {
       templateUrl: '/partials/home.html'
     })
     .when('/board-list', {
-        templateUrl: '/partials/board-list.html'
+        templateUrl: '/partials/board-list.html',
+        controller: 'firebaseCtrl'
     })
     .otherwise('/home');
 });
