@@ -1,5 +1,5 @@
 "use strict";
-angular.module('myApp').factory("FBFactory", function($q, $http, firebaseInfo){
+angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseInfo){
     const getAllPins = function(userId){
         let notes = [];
         return $q( (resolve, reject) => {

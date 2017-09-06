@@ -4,7 +4,7 @@ angular.module('myApp', ['ngRoute']);
 let isAuth = (authFactory, $location) => {
   return new Promise((resolve, reject) => {
     let user = authFactory.getUser();
-    user ? resolve() : $location.url('/home');
+    return user ? resolve() : $location.url('/home');
   });
 };
 
@@ -14,7 +14,8 @@ angular.module('myApp').config(function($routeProvider) {
       templateUrl: '/partials/home.html'
     })
     .when('/board-list', {
-        templateUrl: '/partials/board-list.html'
+        templateUrl: '/partials/board-list.html',
+        controller: 'firebaseCtrl'
     })
     .otherwise('/home');
 });
