@@ -51,11 +51,17 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
     };
 
     $scope.getModalURL = function(id, post) {
-        console.log("post", post);
+        console.log("postpostpostpost", post);
         let imgURL = $(`#pin${id}`).attr('data-modalUrl');
         $('.modalImg').attr('src', imgURL);
         $('.modal-body').attr('data-post-title', post.title);
-        $('.modalTitle').text(post.title);
+        // $('.modalTitle').text(post.title);
+        $('.modal-card-text').text(post.title);
+        $('.modal-thumb-tack').text(` ${post.score}k`);
+        $('.modal-cardAuthor').text(`Author: ${post.author}`);
+        $('.modal-body').attr('data-post-score', post.score);
+        $('.modal-body').attr('data-post-author', post.author);
+
     };
 
     $scope.getAllBoards = function () {
@@ -76,6 +82,9 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
         post.uid = userId;
         post.title = $('.modal-body').attr('data-post-title');
         post.url = $('.modalImg').attr('src');
+        post.score = $('.modal-body').attr('data-post-score');
+        post.author = $('.modal-body').attr('data-post-author');
+        post.boardTitle = $(`#board${key}`).text();
         console.log("post", post);
         firebaseFactory.postPin(post).then((item) => {
             console.log("what board is this dammit", item);
@@ -95,6 +104,9 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
             post.uid = userId;
             post.title = $('.modal-body').attr('data-post-title');
             post.url = $('.modalImg').attr('src');
+            post.score = $('.modal-body').attr('data-post-score');
+            post.author = $('.modal-body').attr('data-post-author');
+            post.boardTitle = input;
             console.log("post", post);
             firebaseFactory.postPin(post)
             .then((item) => {
@@ -103,6 +115,9 @@ let UserSearch = function($scope, $window, RedditFactory, firebaseFactory) {
         });
     };
 
+    $scope.paginationFunction = function() {
+        console.log("hi");
+    };
     // $scope.postBoard({title: "Macaroni"});
 };
 
