@@ -8,13 +8,15 @@
 
     var scrolldelay;
     function pageScroll() {
-      window.scrollBy(0, 1);
-      scrolldelay = setTimeout(pageScroll, 70);
+      $window.scrollBy(0, 1);
+      scrolldelay = setTimeout(pageScroll, 65);
     }
-    // pageScroll();
-    // if (firebase.auth().currentUser !== null) {
-    //   clearTimeout(scrolldelay);
-    // } 
+    
+    if (firebase.auth().currentUser !== null) {
+      clearTimeout(scrolldelay);
+    } else {
+      pageScroll();
+    }
 
     function logIn() {
       authFactory.loginWithGoogle().then(result => {

@@ -1,11 +1,11 @@
-<div class="row" ng-if="isLoggedIn">
+<div class="row mt-2" ng-if="isLoggedIn">
     <div class="col-10">
         <input type="text" class="form-control" ng-model="userSearch">
 
     </div>
     <div class="col-2">
 
-        <button ng-click="search(userSearch)" class="btn btn-primary">Search</button>
+        <button ng-click="search(userSearch)" class="btn btn-danger">Search</button>
     </div>
 </div>
 <hr ng-if="isLoggedIn">
@@ -18,7 +18,24 @@
             <div class="imgBackground">
                 <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
                 <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide pinSaveBtn" data-toggle="modal" data-target="#pinModal"
-                    ng-click="getModalURL(key, post); getAllBoards(post)"><i class="fa fa-thumb-tack" aria-hidden="true"> Save</i></button>
+                    ng-click="getModalURL(key, post); getAllBoards(post)"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
+                <!-- <button id="more{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger more on-hide" ng-click="addmore(post.title)">More</button> -->
+            </div>
+            <div class="card-block" ng-if="isLoggedIn">
+                <div class="d-flex flex-row">
+                    <h6 class="card-text p-2">{{post.title}}</h6>
+                    <i class="fa fa-thumb-tack pr-2 pt-2 pb-2 pl-1" aria-hidden="true"> {{post.score}}k</i>
+                </div>
+                <p class="cardAuthor">Author: {{post.author}}</p>
+            </div>
+        </div>
+    </div>
+    <div ng-repeat="(key, post) in redditSearch1" class="outsideCard">
+        <div class="card searchCard">
+            <div class="imgBackground">
+                <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
+                <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide pinSaveBtn" data-toggle="modal"
+                    data-target="#pinModal" ng-click="getModalURL(key, post); getAllBoards(post)"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
                 <!-- <button id="more{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger more on-hide" ng-click="addmore(post.title)">More</button> -->
             </div>
             <div class="card-block" ng-if="isLoggedIn">
@@ -59,7 +76,7 @@
                                     <div class="list-group-item">
                                         <div class="row userBoardList">
                                             <h6 id="board{{key}}" class="modalBoardTitle col-9 pb-3 pt-3 mb-0 mr-auto">{{myBoard.title}}</h6>
-                                            <button class="btn btn-danger on-hide col-2 mt-1 mb-1" id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" ng-click="postPin(key); closeModal()">Pin</button>
+                                            <button class="btn btn-danger on-hide col-2 mt-1 mb-1" id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" ng-click="postPin(key); closeModal()"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +85,7 @@
                                 <h5 class="ml-2">Create New Board</h5>
                                 <div class="row newBoardForm">
                                     <input type="text" class="form-control col-9 mr-auto newBoardTitle" placeholder="Give your new board a name..." ng-model="userBoardName">
-                                    <button class="btn btn-danger col-2" ng-click="postBoard(userBoardName); closeModal()">Pin</button>
+                                    <button class="btn btn-danger col-2" ng-click="postBoard(userBoardName); closeModal()"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>

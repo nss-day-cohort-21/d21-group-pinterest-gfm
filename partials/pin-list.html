@@ -10,7 +10,7 @@
             <div class="imgBackground">
                 <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
                 <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide pinSaveBtn" data-toggle="modal"
-                    data-target="#exampleModal" ng-click="getModalURL(key, post); getAllBoards(post)"><i class="fa fa-thumb-tack" aria-hidden="true"> Save</i></button>
+                    data-target="#exampleModal" ng-click="getModalURL(key, post); getAllBoards(post)"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
                     <!-- <button id="more{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger more on-hide" ng-click="addmore(post.title)">More</button> -->
             </div>
             <div class="card-block">
@@ -51,7 +51,7 @@
                                     <div class="list-group-item">
                                         <div class="row userBoardList">
                                             <h6 id="board{{key}}" class="modalBoardTitle col-9 pb-3 pt-3 mb-0 mr-auto">{{myBoard.title}}</h6>
-                                            <button class="btn btn-danger on-hide col-2 mt-1 mb-1" id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" ng-click="postPin(key)">Pin</button>
+                                            <button class="btn btn-danger on-hide col-2 mt-1 mb-1" id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" ng-click="postPin(key)"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                 <h5 class="ml-2">Create New Board</h5>
                                 <div class="row newBoardForm">
                                     <input type="text" class="form-control col-9 mr-auto" placeholder="Give your new board a name..." ng-model="userBoardName">
-                                    <button class="btn btn-danger col-2" ng-click="postBoard(userBoardName)">Pin</button>
+                                    <button class="btn btn-danger col-2" ng-click="postBoard(userBoardName)"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
