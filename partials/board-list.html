@@ -1,47 +1,24 @@
 <br>
 <h1>Board List</h1>
 <hr>
-
-<div class="card-deck">
-    <div class="card">
-        <div class="card-columns board-column">
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/75x125" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/150x150" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/100x100" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/75x75" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/75x75" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="http://via.placeholder.com/150x100" alt="Card image cap">
-            </div>
-        </div>
-        <div class="card-footer">
-            <div class="row">
-                <div class="col-10">
-                    <p>Board Title</p>
+<div ng-controller="BoardListCtrl">
+    <div class="card-deck">
+        <div class="card board-card" ng-repeat="(key, board) in boards | groupBy: 'boardid'" data-board-id="{{key}}">
+            <div class="card-columns board-column">
+                <div class="card" ng-repeat="card in board">
+                    <img class="card-img-top" src="{{card.url}}" alt="Card image cap">
                 </div>
-                <div class="col-2">
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-10">
+                        <p>{{card.boardTitle}}</p>
+                    </div>
+                    <div class="col-2">
                         <i class="fa fa-pencil pencilIcon" aria-hidden="true"></i>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- <div class="card board-card"></div> -->
     </div>
-</div>
