@@ -32,7 +32,7 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
             return $q( (resolve, reject) => {
                 $http.post(`${firebaseInfo.databaseURL}/pins.json`,newnote)
                 .then((response) => {
-       
+
                     resolve(response);
                     })
                     .catch((error) => {
@@ -52,7 +52,7 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
                 reject(error);
             });
         });
-    };    
+    };
     const deletePin = function(uglyId){
         return $q( (resolve, reject) => {
             $http.delete(`${firebaseInfo.databaseURL}/pins/${uglyId}.json`)
@@ -84,7 +84,7 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
             return $q( (resolve, reject) => {
                 $http.post(`${firebaseInfo.databaseURL}/boards/${boardId}.json`)
                 .then((response) => {
-       
+
                     resolve(response);
                     })
                     .catch((error) => {
@@ -99,7 +99,7 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
             return $q( (resolve, reject) => {
                 $http.post(`${firebaseInfo.databaseURL}/boards/.json`,newnote)
                 .then((response) => {
-       
+
                     resolve(response);
                     })
                     .catch((error) => {

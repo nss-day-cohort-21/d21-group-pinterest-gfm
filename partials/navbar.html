@@ -13,6 +13,9 @@
                 <a class="nav-link" ng-if="!isLoggedIn" ng-click="logIn()">Login</a>
                 <a class="nav-link" ng-if="isLoggedIn" ng-click="logOut()">Logout</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-if="isLoggedIn" ng-href="#!/board-list">My Boards</a>
+            </li>
 
         </ul>
     </div>

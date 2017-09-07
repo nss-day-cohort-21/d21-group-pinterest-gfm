@@ -1,5 +1,5 @@
 'use strict';
-angular.module('myApp', ['ngRoute']);
+angular.module('myApp', ['ngRoute', 'angular.filter']);
 
 
 angular.module('myApp').config(function($routeProvider) {
@@ -18,7 +18,7 @@ angular.module('myApp').config(function($routeProvider) {
     })
     .when('/board-list', {
         templateUrl: '/partials/board-list.html',
-        controller: 'firebaseCtrl',
+        controller: 'BoardListCtrl',
         resolve: {isAuth}
     })
     .when('/user-search', {
