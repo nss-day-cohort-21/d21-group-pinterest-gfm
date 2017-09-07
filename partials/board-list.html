@@ -3,7 +3,7 @@
 <hr>
 <div ng-controller="BoardListCtrl">
     <div class="card-deck">
-        <div class="card board-card"  ng-repeat="(key, board) in boards | groupBy: 'boardid'" data-board-id="{{key}}">
+        <div class="card board-card" ng-repeat="(key, board) in boards | groupBy: 'boardid'" data-board-id="{{key}}">
             <div class="card-columns board-column">
                 <div class="card" ng-repeat="card in board">
                     <img class="card-img-top" src="{{card.url}}" alt="Card image cap">
@@ -15,11 +15,10 @@
                         <p>{{card.boardTitle}}</p>
                     </div>
                     <div class="col-2">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <i class="fa fa-pencil pencilIcon" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- <div class="card board-card"></div> -->
     </div>
-    <!-- <div class="card board-card"></div> -->
-</div>

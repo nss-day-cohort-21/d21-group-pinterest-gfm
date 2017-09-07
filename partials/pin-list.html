@@ -1,17 +1,25 @@
 <div class="card-columns">
     <!-- TODO: {{key}}. is used for tracking response data in console. Can be deleted in the future -->
 
-    <div ng-repeat="(key, post) in pins">
-        <div class="card">
-            <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
-            <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide" data-toggle="modal" data-target="#exampleModal1" ng-click="getModalURL(key, post); getAllBoards(post)">Save</button>
-            <button id="modalPinDelete{{key}}" data-ugly-id="{{myBoard.ugly}}" class="btn btn-danger delete on-hide" ng-click="deletePin(key)">Delete</button>
+    <div ng-repeat="(key, post) in pins" class="outsideCard">
+        <div class="card searchCard">
+            <button id="modalPinDelete{{key}}" data-ugly-id="{{myBoard.ugly}}" class="btn btn-danger delete on-hide text-left" ng-click="deletePin(key)">Delete</button>
+            <div class="imgBackground">
+                <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
+                <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide pinSaveBtn" data-toggle="modal"
+                    data-target="#exampleModal" ng-click="getModalURL(key, post); getAllBoards(post)"><i class="fa fa-thumb-tack" aria-hidden="true"> Save</i></button>
+                    <!-- <button id="more{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger more on-hide" ng-click="addmore(post.title)">More</button> -->
+            </div>
             <div class="card-block">
-                <p class="card-text">{{post.title}}</p>
+                <div class="d-flex flex-row">
+                    <h6 class="card-text p-2">{{post.title}}</h6>
+                    <i class="fa fa-thumb-tack pr-2 pt-2 pb-2 pl-1" aria-hidden="true"> {{post.score}}k</i>
+                </div>
+                <p class="cardAuthor">Author: {{post.author}}</p>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <!-- <div class="modal-header">
@@ -20,18 +28,36 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div> -->
-                <div class="modal-body" data-post-title="">
+                <div class="modal-body" data-post-title="" data-post-score="" data-post-author="">
                     <div class="row">
-                        <div class="col-6">
-                            <img class="modalImg" src="" alt="">
+                        <div class="col-6 modalCardInfo">
+                            <img class="modalImg mx-auto d-block" src="" alt="">
+                            <!-- <p class="card-text modalTitle"></p> -->
+                            <div class="card-block">
+                                <div class="d-flex flex-row">
+                                    <h6 class="modal-card-text card-text p-2"></h6>
+                                    <i class="fa fa-thumb-tack pr-2 pt-2 pb-2 pl-1 modal-thumb-tack" aria-hidden="true"></i>
+                                </div>
+                                <p class="cardAuthor modal-cardAuthor"></p>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <h5>Choose Board</h5>
-                            <div class="myBoards list-group" ng-repeat="(key, myBoard) in board">
-                                <div class="list-group-item">
-                                    <h6>{{myBoard.title}}</h6>
-                                    <button id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" class="btn btn-danger on-hide" ng-click="postPin(key)">Pin</button>
-
+                        <div class="col-6 modalBoards">
+                            <h5 class="ml-4">Choose Board</h5>
+                            <div class="myBoards col-12">
+                                <div class="list-group" ng-repeat="(key, myBoard) in board">
+                                    <div class="list-group-item">
+                                        <div class="row userBoardList">
+                                            <h6 id="board{{key}}" class="modalBoardTitle col-9 pb-3 pt-3 mb-0 mr-auto">{{myBoard.title}}</h6>
+                                            <button class="btn btn-danger on-hide col-2 mt-1 mb-1" id="modalPin{{key}}" data-ugly-id="{{myBoard.ugly}}" ng-click="postPin(key)">Pin</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="createNewBoard col-12 mt-4 pt-4">
+                                <h5 class="ml-2">Create New Board</h5>
+                                <div class="row newBoardForm">
+                                    <input type="text" class="form-control col-9 mr-auto" placeholder="Give your new board a name..." ng-model="userBoardName">
+                                    <button class="btn btn-danger col-2" ng-click="postBoard(userBoardName)">Pin</button>
                                 </div>
                             </div>
                         </div>

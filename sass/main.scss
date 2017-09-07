@@ -1,12 +1,15 @@
-.btn-danger {
+.pinSaveBtn {
   position: absolute;
   right: 10px;
   top: 10px;
 }
+
 .delete {
+  display: inline-block;
   position: absolute;
-  left: 10px;
-  top: 10px;
+  right: 10px;
+  top: 90%;
+  text-align: left !important;
 }
 
 .on-hide {
@@ -20,6 +23,15 @@
 .modalImg {
   max-width: 390px !important;
   max-height: 500px !important;
+}
+
+.list-group-item {
+  padding: 0 1.25rem !important;
+  border: none !important;
+}
+
+.list-group-item:hover {
+  background-color: #E8E8E8;
 }
 
 .list-group-item:hover .on-hide {
@@ -40,11 +52,12 @@
   margin-bottom: 0;
 }
 
+
 .board-card {
   max-width: 33%;
 }
 
-.fa {
+.pencilIcon {
   color: #999;
   font-size: 1.5em;
 }
@@ -56,4 +69,66 @@
 .myBoards {
   height: 250px !important;
   overflow-y: auto;
+}
+
+h6.card-text {
+  max-width: 75% !important;
+}
+
+.cardAuthor {
+  font-size: 0.25em;
+  padding-left: 1em;
+}
+
+.outsideCard {
+  padding-left: 0.75em;
+  padding-top: 0.75em;
+  padding-right: 0.75em;
+  border-radius: 5px;
+}
+
+.outsideCard:hover {
+  transition: background-color 0.75s ease;
+  background-color: #E8E8E8;
+}
+
+.outsideCard:hover .card{
+  transition: background-color 0.75s ease;
+  background-color: #E8E8E8;
+}
+
+.outsideCard:hover .btn.delete {
+  display: block;
+}
+
+.searchCard {
+  border: none !important;
+}
+
+div.imgBackground {
+  display: inline-block;
+  background: black;
+  padding: 0;
+}
+
+div.imgBackground:hover img {
+  transition: opacity 0.25s ease;
+  opacity: 0.8;
+}
+
+h6.card-text.p-2 {
+  margin-right: auto;
+}
+
+.newBoardForm {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.modalCardInfo {
+  border-right: 1px solid #E8E8E8;
+}
+
+.createNewBoard {
+  border-top: 1px solid #E8E8E8;
 }
