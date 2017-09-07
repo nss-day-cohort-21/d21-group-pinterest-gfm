@@ -14,7 +14,8 @@ angular.module('myApp').config(function($routeProvider) {
 
   $routeProvider
     .when('/home', {
-      templateUrl: '/partials/home.html'
+      templateUrl: '/partials/search-list.html',
+      controller: 'UserSearch'
     })
     .when('/board-list', {
         templateUrl: '/partials/board-list.html',

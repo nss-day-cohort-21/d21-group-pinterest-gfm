@@ -142,3 +142,24 @@ h6.card-text.p-2 {
 .createNewBoard {
   border-top: 1px solid #e8e8e8;
 }
+
+.overlay {
+  width: 100%;
+  height: 2000px;
+  position: fixed;
+  background-color: #BEBEBE;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+.loginQModal {
+  position: fixed;
+  top: 50vh;
+  left: 48vw;
+  background: white;
+  padding: 2em;
+  border-radius: 5px;
+  opacity: 1 !important;
+  z-index: 5;
+}
+

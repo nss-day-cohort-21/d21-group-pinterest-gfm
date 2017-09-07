@@ -6,15 +6,25 @@
     $scope.logOut = logOut;
     $scope.getUser = getUser;
 
+    var scrolldelay;
+    function pageScroll() {
+      window.scrollBy(0, 1);
+      scrolldelay = setTimeout(pageScroll, 70);
+    }
+    // pageScroll();
+    // if (firebase.auth().currentUser !== null) {
+    //   clearTimeout(scrolldelay);
+    // } 
 
     function logIn() {
       authFactory.loginWithGoogle().then(result => {
         let user = result.user.uid;
         if (user) {
-          $location.url('/board-list');
-          $scope.$apply();
-          $rootScope.currentUser = result.user.uid;
           $rootScope.isLoggedIn = true;
+          clearTimeout(scrolldelay);
+          $location.url('/user-search');
+          $rootScope.currentUser = result.user.uid;
+          $scope.$apply();
         } else {
           $rootScope.isLoggedIn = false;
         }
@@ -24,7 +34,7 @@
       authFactory.logout().then(result => {
         let user = firebase.auth().currentUser;
         if (user) {
-          $location.url('/board-list');
+          $location.url('/home');
           $scope.$apply();
           $rootScope.currentUser = result.user.uid;
           $rootScope.isLoggedIn = true;

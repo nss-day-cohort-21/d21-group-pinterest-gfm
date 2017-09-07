@@ -34,7 +34,21 @@ let RedditFactory = function($http) {
             });
     };
 
-    return { getUserSearch, getScrollSearch };
+    let landingSearch = function() {
+        return $http.get(`https://www.reddit.com/r/pics/top.json`)
+            .then((data) => {
+                console.log("data", data.data);
+                after = data.data.data.after;
+                return data.data.data.children;
+            })
+            .catch((error) => {
+                console.log("error", error);
+            });
+    };
+
+
+
+    return { getUserSearch, getScrollSearch, landingSearch };
 
 };
 
