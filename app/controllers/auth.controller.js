@@ -11,11 +11,10 @@
       window.scrollBy(0, 1);
       scrolldelay = setTimeout(pageScroll, 70);
     }
-    if (firebase.auth().currentUser === null) {
-      pageScroll();
-    } else if (firebase.auth().currentUser !== null) {
-      clearTimeout(scrolldelay);
-    }
+    // pageScroll();
+    // if (firebase.auth().currentUser !== null) {
+    //   clearTimeout(scrolldelay);
+    // } 
 
     function logIn() {
       authFactory.loginWithGoogle().then(result => {
