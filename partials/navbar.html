@@ -7,17 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#!/user-search">Search <span class="sr-only">(current)</span></a>
+                <a class="nav-link" ng-if="isLoggedIn" href="#!/user-search">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-if="isLoggedIn" ng-href="#!/board-list">Boards</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ng-if="isLoggedIn" ng-href="#!/pin-list">Pins</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" ng-if="!isLoggedIn" ng-click="logIn()">Login</a>
                 <a class="nav-link" ng-if="isLoggedIn" ng-click="logOut()">Logout</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" ng-if="isLoggedIn" ng-href="#!/board-list">My Boards</a>
-            </li>
-
         </ul>
     </div>
 </nav>

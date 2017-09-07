@@ -14,7 +14,8 @@ angular.module('myApp').config(function($routeProvider) {
 
   $routeProvider
     .when('/home', {
-      templateUrl: '/partials/home.html'
+      templateUrl: '/partials/search-list.html',
+      controller: 'UserSearch'
     })
     .when('/board-list', {
         templateUrl: '/partials/board-list.html',
@@ -33,8 +34,8 @@ angular.module('myApp').config(function($routeProvider) {
 });
 
 angular.module('myApp').run(function($rootScope, $window, firebaseInfo) {
-  firebase.initializeApp(firebaseInfo);
   $rootScope.isLoggedIn = false;
+  firebase.initializeApp(firebaseInfo);
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       $rootScope.isLoggedIn = true;
