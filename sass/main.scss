@@ -31,7 +31,7 @@
 }
 
 .list-group-item:hover {
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
 }
 
 .list-group-item:hover .on-hide {
@@ -40,6 +40,17 @@
 
 /* Board list cards
 =================================*/
+.card-footer {
+  margin-top: auto;
+}
+.card.board-card {
+  margin-top: 1.5em;
+}
+
+.board-row {
+  justify-content: space-between
+}
+
 .board-column {
   column-gap: 0.1em;
   padding: 0.1em;
@@ -52,14 +63,13 @@
   margin-bottom: 0;
 }
 
-
-.board-card {
-  max-width: 33%;
-}
-
 .pencilIcon {
   color: #999;
   font-size: 1.5em;
+}
+
+.pencilIcon:hover {
+  cursor: pointer;
 }
 
 .modalBoards {
@@ -89,12 +99,12 @@ h6.card-text {
 
 .outsideCard:hover {
   transition: background-color 0.75s ease;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
 }
 
-.outsideCard:hover .card{
+.outsideCard:hover .card {
   transition: background-color 0.75s ease;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
 }
 
 .outsideCard:hover .btn.delete {
@@ -126,9 +136,9 @@ h6.card-text.p-2 {
 }
 
 .modalCardInfo {
-  border-right: 1px solid #E8E8E8;
+  border-right: 1px solid #e8e8e8;
 }
 
 .createNewBoard {
-  border-top: 1px solid #E8E8E8;
+  border-top: 1px solid #e8e8e8;
 }

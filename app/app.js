@@ -33,8 +33,8 @@ angular.module('myApp').config(function($routeProvider) {
 });
 
 angular.module('myApp').run(function($rootScope, $window, firebaseInfo) {
-  firebase.initializeApp(firebaseInfo);
   $rootScope.isLoggedIn = false;
+  firebase.initializeApp(firebaseInfo);
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       $rootScope.isLoggedIn = true;
