@@ -23,7 +23,8 @@ let RedditFactory = function($http) {
     let getScrollSearch = function() {
         console.log("after", after);
         console.log("search", search);
-        return $http.get(`https://www.reddit.com/r/pics/search.json?q=${search}&restrict_sr=on&sort=top&t=all&count=25&after=${after}`)
+        //https://www.reddit.com/r/pics/search.json?q=${search}&restrict_sr=on&sort=top&t=all&count=25&after=${after}
+        return $http.get(`https://www.reddit.com/r/pics.json?restrict_sr=on&sort=top&t=all&count=25&after=${after}`)
             .then((data) => {
                 console.log("data", data.data);
                 after = data.data.data.after;
