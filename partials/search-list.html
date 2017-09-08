@@ -19,7 +19,7 @@
                 <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
                 <button id="pin{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger on-hide pinSaveBtn" data-toggle="modal" data-target="#pinModal"
                     ng-click="getModalURL(key, post); getAllBoards(post)"><i class="fa fa-thumb-tack" aria-hidden="true"></i></button>
-                <!-- <button id="more{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger more on-hide" ng-click="addmore(post.title)">More</button> -->
+                <button id="more{{key}}" data-modalUrl="{{post.url}}" type="button" class="btn btn-danger more on-hide" ng-click="addmore($event,post.author)">More</button>
             </div>
             <div class="card-block" ng-if="isLoggedIn">
                 <div class="d-flex flex-row">

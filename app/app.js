@@ -36,6 +36,7 @@ angular.module('myApp').config(function($routeProvider) {
 angular.module('myApp').run(function($rootScope, $window, firebaseInfo) {
   $rootScope.isLoggedIn = false;
   firebase.initializeApp(firebaseInfo);
+  firebase.auth().signOut();
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       $rootScope.isLoggedIn = true;

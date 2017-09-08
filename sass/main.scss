@@ -11,9 +11,18 @@
   top: 90%;
   text-align: left !important;
 }
-
+.more {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 90%;
+  text-align: left !important;
+}
 .on-hide {
   display: none;
+}
+.hidden {
+  visibility:invisible;
 }
 
 .card:hover .on-hide {
