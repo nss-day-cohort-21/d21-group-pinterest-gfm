@@ -1,5 +1,14 @@
 "use strict";
 angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseInfo){
+
+
+  let boardId;
+  const setBoardId = function(id) {
+    boardId = id;
+  };
+  const getBoardId = function() {
+    return boardId;
+  };
     const getAllPins = function(userId){
         let notes = [];
         return $q( (resolve, reject) => {
@@ -121,6 +130,7 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
         });
     };
     const deleteBoard = function(uglyId){
+
         return $q( (resolve, reject) => {
             $http.delete(`${firebaseInfo.databaseURL}/boards/${uglyId}.json`)
             .then((response) => {
@@ -131,5 +141,21 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
             });
         });
     };
-    return {getAllPins,getSinglePin,postPin,patchPin,deletePin,getAllBoards,getSingleBoard,postBoard,patchBoard,deleteBoard};
+
+
+    const getPinOfBoard = (boardId) =>{
+        if (firebase.auth().currentUser) {
+            return $q( (resolve, reject) => {
+                $http.get(`${firebaseInfo.databaseURL}//pins.json?orderBy="boardid"&equalTo="${boardId}"`)
+                .then((response) => {
+                    console.log("response", response);
+                    resolve(response);
+                    })
+                    .catch((error) => {
+                        reject(error);
+                    });
+            });
+        }
+    };
+    return {getAllPins,getSinglePin,postPin,patchPin,deletePin,getAllBoards,getSingleBoard,postBoard,patchBoard,deleteBoard,getPinOfBoard,setBoardId,getBoardId};
 });

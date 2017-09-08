@@ -47,9 +47,21 @@ let RedditFactory = function($http) {
             });
     };
 
+    let getRelated = function(search) {
 
+        return $http.get(`http://www.reddit.com/search.json?q=${search}`)
+            .then((data) => {
+                console.log("data", data.data);
+                after = data.data.data.after;
+                return data.data.data.children;
+            })
+            .catch((error) => {
+                console.log("error", error);
+            });
 
-    return { getUserSearch, getScrollSearch, landingSearch };
+    };
+
+    return { getUserSearch, getScrollSearch, landingSearch, getRelated };
 
 };
 

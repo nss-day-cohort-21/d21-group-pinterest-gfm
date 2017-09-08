@@ -21,6 +21,10 @@ angular.module('myApp').config(function($routeProvider) {
         templateUrl: '/partials/board-list.html',
         controller: 'BoardListCtrl',
         resolve: {isAuth}
+    }).when('/board-list/:bofse', {
+        templateUrl: '/partials/single-board-list.html',
+        controller: 'SingleBoardCtrl',
+        resolve: {isAuth}
     })
     .when('/user-search', {
         templateUrl: '/partials/search-list.html',
@@ -36,6 +40,7 @@ angular.module('myApp').config(function($routeProvider) {
 angular.module('myApp').run(function($rootScope, $window, firebaseInfo) {
   $rootScope.isLoggedIn = false;
   firebase.initializeApp(firebaseInfo);
+  firebase.auth().signOut();
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       $rootScope.isLoggedIn = true;

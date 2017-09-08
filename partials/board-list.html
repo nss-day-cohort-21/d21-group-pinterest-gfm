@@ -1,4 +1,4 @@
-<br>
+<!-- <br>
 <h1>Boards</h1>
 <hr>
 <div ng-controller="BoardListCtrl">
@@ -16,7 +16,38 @@
                             <p ng-repeat="card in board">{{card.boardTitle}}</p>
                         </div>
                         <div class="col-2">
-                            <i class="fa fa-pencil pencilIcon" aria-hidden="true"></i>
+                            <a ng-href="#!/board-list/{{key}}"><i class="fa fa-pencil pencilIcon" aria-hidden="true" ng-click="getSingleBoard(key)"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<br>
+<h1>Board List</h1>
+<hr>
+<div ng-controller="BoardListCtrl">
+    <div class="row board-row">
+        <div class="col-sm-4 card-deck" ng-repeat="(key, board) in boards | groupBy: 'boardid'" data-board-id="{{key}}">
+            <div class="card board-card">
+                <div class="card-columns board-column">
+                    <div class="card" ng-repeat="card in board">
+                        <img class="card-img-top" src="{{card.url}}" alt="Card image cap">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-8" ng-repeat="(key, title) in board | groupBy: 'boardTitle'">
+                            <p>{{key}}</p>
+                        </div>
+                        <div class="col-2">
+                        <a ng-href="#!/board-list/{{key}}"><i class="fa fa-pencil pencilIcon" aria-hidden="true" ng-click="getSingleBoard(key)"></i></a>
+                        </div>
+                        <div class="col-2">
+                        <a ng-href="#!/board-list/"><i class="fa fa-trash pencilIcon" aria-hidden="true" ng-click="deleteBoard(key)"></i></a>
+
                         </div>
                     </div>
                 </div>
