@@ -21,6 +21,10 @@ angular.module('myApp').config(function($routeProvider) {
         templateUrl: '/partials/board-list.html',
         controller: 'BoardListCtrl',
         resolve: {isAuth}
+    }).when('/board-list/:bofse', {
+        templateUrl: '/partials/single-board-list.html',
+        controller: 'SingleBoardCtrl',
+        resolve: {isAuth}
     })
     .when('/user-search', {
         templateUrl: '/partials/search-list.html',
