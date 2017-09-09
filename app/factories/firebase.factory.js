@@ -22,6 +22,22 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
                 });
         });
     };
+
+    const getAllPinsByBoard = function(boardId){
+        let notes = [];
+        return $q( (resolve, reject) => {
+            $http.get(`${firebaseInfo.databaseURL}/pins.json?orderBy="boardid"&equalTo="${boardId}"`)
+            .then((itemObject) => {
+                notes = itemObject.data;
+                console.log("what are my notes",notes);
+                resolve(notes);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
     const getSinglePin = function(boardId){
         let notes = [];
         return $q( (resolve, reject) => {
@@ -157,5 +173,18 @@ angular.module('myApp').factory("firebaseFactory", function($q, $http, firebaseI
             });
         }
     };
-    return {getAllPins,getSinglePin,postPin,patchPin,deletePin,getAllBoards,getSingleBoard,postBoard,patchBoard,deleteBoard,getPinOfBoard,setBoardId,getBoardId};
+
+  const deleteThisBoard = function(boardId){
+    console.log("what is the factory boardId",boardId);
+        return $q( (resolve, reject) => {
+            $http.delete(`${firebaseInfo.databaseURL}/pins/${boardId}.json`)
+            .then((itemObject) => {
+                resolve(itemObject);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+    return {getAllPinsByBoard,getAllPins,getSinglePin,postPin,patchPin,deletePin,getAllBoards,getSingleBoard,postBoard,patchBoard,deleteBoard,getPinOfBoard,setBoardId,getBoardId,deleteThisBoard};
 });
