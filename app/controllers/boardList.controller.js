@@ -1,10 +1,11 @@
 (function() {
   'use strict';
 
-  var BoardListCtrl = function($scope, $http, $routeParams, $location, firebaseFactory) {
+  var BoardListCtrl = function($scope, $http, $routeParams, $location, firebaseFactory,$route) {
 
     $scope.getAllBoards = getAllBoards;
     $scope.getSingleBoard = getSingleBoard;
+    $scope.deleteBoard = deleteBoard;
     $scope.boards = [];
 
     function getAllBoards() {
@@ -22,15 +23,29 @@
       $location.url("/board-list/" + $routeParams.boardTitle);
     }
     function deleteBoard (key) {
-      console.log('what is key',key);
-      firebaseFactory.deleteBoard(key);
-      $location.url("/board-list/");
-      $scope.$apply();
+      let myItem=[];
+      let itemDeleting=[];
+      firebaseFactory.getAllPinsByBoard(key).then((item)=>{
+        myItem.push(item);
+        myItem.forEach((item)=>{
+          itemDeleting.push(item);
+          let myUglyId = Object.keys(itemDeleting[0]);
+          myUglyId.forEach((item)=>{
+            console.log("what is each item", item);
+            firebaseFactory.deleteThisBoard(item);
+
+      // $(".board-row").html(' ');
+
+          });
+
+        });
+      });
+      $location.url("/user-search/");
     }
 
     getAllBoards();
   };
 
-  BoardListCtrl.$inject = ['$scope', '$http', '$routeParams', '$location', 'firebaseFactory'];
+  BoardListCtrl.$inject = ['$scope', '$http', '$routeParams', '$location', 'firebaseFactory',"$route"];
   angular.module('myApp').controller('BoardListCtrl', BoardListCtrl);
 })();
